@@ -1,21 +1,24 @@
-const express = require("express")
-
+const express = require("express");
+const cors = require("cors");
 const app = express()
-const arr = ["Strawberry"]
+app.use(cors())
 
-app.listen(3000, function () {
-    console.log('server runs...')
-})
+const arr = []
+app.use(express.urlencoded({ extended: false}));
+
+// app.get('/', function (req, res) {
+//     console.log("your server gets ready")
+//     res.send("your server gets ready")
+// })
 app.get('/', function (req, res) {
-    console.log("your server gets ready")
-    res.send("your server gets ready")
-})
-app.get('/name', function (req, res) {
-    // console.log(req.query.inputbox)
+    // console.log(req)
     const val = req.query.inputbox
     arr.push(val)
     console.log(arr)
     console.log(val)
-    res.send(("works"))
+    res.send(("Ur fruit is added"))
 
+})
+app.listen(5000, function () {
+    console.log('server runs...')
 })
